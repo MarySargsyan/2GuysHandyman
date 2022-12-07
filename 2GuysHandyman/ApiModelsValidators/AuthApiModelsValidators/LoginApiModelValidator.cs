@@ -1,7 +1,8 @@
 ﻿using _2GuysHandyman.ApiModels;
+using _2GuysHandyman.ApiModels.AuthApiModels;
 using FluentValidation;
 
-namespace _2GuysHandyman.ApiModelsValidators
+namespace _2GuysHandyman.ApiModelsValidators.AuthApiModelsValidators
 {
     public class LoginApiModelValidator : AbstractValidator<LoginApiModel>
     {

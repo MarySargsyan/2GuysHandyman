@@ -1,6 +1,8 @@
 ﻿using _2GuysHandyman.ApiModels;
+using _2GuysHandyman.ApiModels.AuthApiModels;
 using _2GuysHandyman.models;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -25,8 +27,15 @@ namespace _2GuysHandyman.Controllers
             this.configuration = configuration;
         }
 
+        [HttpGet, Authorize]
+        public async Task<ActionResult<UsersApiModel>> GetMe()
+        {   
+            return mapper.Map<UsersApiModel>(
+                 dbContext.Users.FirstOrDefault(u => u.Email == User.Identity.Name));
+        }
+
         [HttpPost("register")]
-        public async Task<ActionResult<Users>> Register(UsersApiModel user)
+        public async Task<ActionResult<Users>> Register(RegistrationApiModel user)
         {
             if (dbContext.Users.Any(u => u.Email == user.Email))
             {
@@ -89,7 +98,7 @@ namespace _2GuysHandyman.Controllers
         {
             List<Claim> claims = new List<Claim> 
             {
-                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Name, user.Email),
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(

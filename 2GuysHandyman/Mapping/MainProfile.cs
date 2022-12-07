@@ -12,7 +12,13 @@ namespace _2GuysHandyman.Mapping
             CreateMap<Services, ServicesApiModel>();
             CreateMap<ServicesApiModel, Services>();
 
+            CreateMap<Orders, OrdersApiModel>();
+            CreateMap<OrdersApiModel, Orders>();
+
+            CreateMap<RegistrationApiModel, Users>();
+
             CreateMap<UsersApiModel, Users>();
+            CreateMap<Users, UsersApiModel>();
         }
     }
 }

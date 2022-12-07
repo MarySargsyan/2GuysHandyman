@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace _2GuysHandyman.ApiModels
+namespace _2GuysHandyman.ApiModels.AuthApiModels
 {
     public class LoginApiModel
     {
